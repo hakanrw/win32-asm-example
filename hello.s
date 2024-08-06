@@ -25,11 +25,11 @@ _start:
     push $msg                       # lpText
     push $0                        # hWnd
     call _MessageBoxA
-    movl %eax, %ebx
+    mov %eax, %ebx
 
     push $-11
     call _GetStdHandle
-    movl %eax, %edi
+    mov %eax, %edi
 
     push %ebx
     push $format
@@ -57,6 +57,7 @@ _start:
     je print_ignore
 
     push $unknown
+    jmp print_call
 
 print_abort:
     push $abort
