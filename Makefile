@@ -1,8 +1,8 @@
-run: link
+run: hello.exe
 	.\hello.exe
 	
-link: assemble
+hello.exe: hello.o
 	ld -m i386pe hello.o -o hello.exe -L"C:\Windows\SysWOW64" -luser32 -lkernel32
 
-assemble:
+hello.o: hello.s
 	as --32 .\hello.s -o hello.o
