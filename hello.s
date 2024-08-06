@@ -1,7 +1,12 @@
 .section .rodata
     msg: .asciz "Hello, World!"
     title: .asciz "Message"
-    format: .asciz "MessageBoxA returned %d\n"
+    format: .asciz "MessageBoxA returned %d: "
+    abort: .asciz  "Abort  \n"
+    retry: .asciz  "Retry  \n"
+    ignore: .asciz "Ignore \n"
+    unknown: .asciz "Unknown\n"
+
 
 .section .data
     buffer: .space 128
@@ -31,7 +36,6 @@ _start:
     push $buffer
     call _wsprintfA
 
-
     push $0
     push $0
     push $128
@@ -39,5 +43,37 @@ _start:
     push %edi
     call _WriteConsoleA
 
+    push $0
+    push $0
+    push $8
+
+    cmp $3, %ebx
+    je print_abort
+
+    cmp $4, %ebx
+    je print_retry
+
+    cmp $5, %ebx
+    je print_ignore
+
+    push $unknown
+
+print_abort:
+    push $abort
+    jmp print_call
+
+print_retry:
+    push $retry
+    jmp print_call
+
+print_ignore:
+    push $ignore
+    jmp print_call
+
+print_call:
+    push %edi
+    call _WriteConsoleA      
+
+exit:
     push $0                        # uExitCode
     call _ExitProcess
