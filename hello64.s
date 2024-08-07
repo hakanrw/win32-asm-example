@@ -58,7 +58,7 @@ _start:
     cmp $5, %rbx
     je print_ignore
 
-    push $unknown
+    mov $unknown, %rdx
     jmp print_call
 
 print_abort:
@@ -75,7 +75,7 @@ print_ignore:
 
 print_call:
     mov %rdi, %rcx
-    call WriteConsoleA      
+    call WriteConsoleA
 
 exit:
     mov $0, %rcx                        # uExitCode
