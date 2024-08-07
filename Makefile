@@ -1,5 +1,5 @@
 LDFLAGS_32 ?= -L"C:\Windows\SysWOW64" -L"/home/$(shell whoami)/.wine/drive_c/windows/syswow64"
-LDFLAGS_64 ?= -L"C:\Windows\System32" -L"/home/$(shell whoami)/.wine/drive_c/windows/syswow64"
+LDFLAGS_64 ?= -L"C:\Windows\System32" -L"/home/$(shell whoami)/.wine/drive_c/windows/system32"
 
 run: hello.exe
 	./hello.exe
