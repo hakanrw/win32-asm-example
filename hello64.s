@@ -40,7 +40,7 @@ _start:
 
     push $0
     mov $0, %r9
-    mov $128, %r8
+    mov %rax, %r8
     mov $buffer, %rdx
     mov %rdi, %rcx
     call WriteConsoleA

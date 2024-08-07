@@ -38,7 +38,7 @@ _start:
 
     push $0
     push $0
-    push $128
+    push %eax
     push $buffer
     push %edi
     call _WriteConsoleA
